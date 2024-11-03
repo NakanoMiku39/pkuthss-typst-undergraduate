@@ -21,3 +21,6 @@ The full PDF file is available [here](./build/thesis.pdf).
 - Run `typst compile thesis.typ --font-path fonts` to compile the thesis
 
 ## TODO
+
+有一点不同之处在于我似乎没有把版权声明这一页加进目录
+~~但是我去年的论文给我过了~~
