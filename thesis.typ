@@ -1,35 +1,90 @@
 #import "template.typ": *
 
-#show: doc => conf(
-  cauthor: "张三",
-  eauthor: "San Zhang",
-  blindid: "L2023XXXXX",
-  cthesisname: "博士研究生学位论文",
-  cheader: "北京大学博士学位论文",
-  ctitle: "北京大学学位论文模板\npkuthss-typst v0.1.0",
-  etitle: "PKU dissertation document template\n pkuthss-typst v0.1.0",
-  school: "某个学院",
-  cfirstmajor: "某个一级学科",
-  cmajor: "某个专业",
-  emajor: "Some Major",
-  direction: "某个研究方向",
-  csupervisor: "李四 教授",
-  esupervisor: "Prof. Si Li",
-  date: "二零二三年六月",
-  cabstract: "本文介绍了 pkuthss-typst 文档模板所提供的功能。",
-  ckeywords: ("Typst", "模板"),
-  eabstract: "This document introduces the features of the pkuthss-typst template.",
-  ekeywords: ("Typst", "Template"),
-  acknowledgements: [感谢 Typst 开发者的辛勤付出。 #lorem(300)],
-  linespacing: 1em,
-  outlinedepth: 3,
-  blind: false,
-  listofimage: true,
-  listoftable: true,
-  listofcode: true,
-  alwaysstartodd: true,
+
+#show: doc => UndergraduateThesis(
+  // ctitle必填
+  ctitle: "Typst：世界前沿的排版系统",
   doc,
 )
+
+// 封面修改后位本科生版本
+// TitlePage参数全部必填
+#TitlePage(
+  chinese_title: [Typst：世界前沿的排版系统],
+  english_title: [Typst: State-of-art \ Formatting System],
+  name : "十一",
+  studentid : "20000xxxxx",
+  department : "信息科学与技术学院",
+  major : "信息与计算科学",
+  supervisor_name : "斯公子",
+  year_and_month : "二零二四年六月"
+) <title-page>
+
+
+// 导师评价
+// CheckSheet参数全部必填
+#CheckSheet(
+  name : "十一",
+  studentid : "20000xxxxx",
+  school : "信息科学与技术学院",
+  major : "信息与计算科学",
+  supervisor : "斯公子",
+  department : "计算机学院",
+  grade : "中等",
+  title : "助理教授",
+  chinese_title : "Typst：世界前沿的排版系统",
+  english_title : "Typst: State-of-art Formatting System",
+  sign_pic : image("./images/老师签名.png"),
+  year : 2024,
+  month : 5,
+  day : 15,
+)[
+这篇文章写得还行
+] // end of check comment
+
+// Copyright
+#CopyrightClaim <copy-right>
+
+// 中文摘要
+#ChineseAbstract(
+  keywords : ("Typst", "排版")
+)[
+Typst 是一款新兴的排版工具，旨在提供简单、高效、且强大的排版功能。它结合了传统排版系统的优点，同时简化了用户的操作流程，使得用户可以更加专注于内容创作而不是排版细节。
+
+Typst 的核心优势在于其直观的语法和强大的排版引擎。用户可以使用类似编程的方式来定义文档结构、样式和内容，这使得复杂文档的排版变得更加简便。此外，Typst 支持实时预览功能，用户可以在编辑过程中即时看到排版效果，从而提高了工作效率。
+
+Typst 还具备高度的可扩展性和灵活性。通过插件和模板系统，用户可以自定义排版规则，满足不同的需求。不论是学术论文、商业报告还是个人项目，Typst 都能提供专业级的排版效果。
+
+总的来说，Typst 是一款兼具易用性和专业性的排版工具，适合各种类型的文档创作需求。它的出现，为用户提供了一种全新的排版体验，让排版过程变得更加愉快和高效。
+
+这篇文章提供了一个北大本科生毕业论文模板。
+  
+]
+
+// English Abstract
+#EnglishAbstract(
+  keywords : ("Typst", "Formatting")
+)[ 
+
+Typst is an emerging typesetting tool designed to offer simple, efficient, and powerful typesetting capabilities. It combines the strengths of traditional typesetting systems while simplifying user operations, allowing users to focus more on content creation rather than typesetting details.
+
+The core advantage of Typst lies in its intuitive syntax and powerful typesetting engine. Users can define document structures, styles, and content using a programming-like approach, making the typesetting of complex documents more straightforward. Additionally, Typst supports real-time preview functionality, enabling users to see the typesetting effects immediately during the editing process, thereby improving work efficiency.
+
+Typst also boasts high extensibility and flexibility. Through a system of plugins and templates, users can customize typesetting rules to meet various needs. Whether it’s academic papers, business reports, or personal projects, Typst can deliver professional-grade typesetting results.
+
+In summary, Typst is a user-friendly yet professional typesetting tool suitable for a wide range of document creation needs. Its introduction provides users with a new typesetting experience, making the typesetting process more enjoyable and efficient.
+
+This paper offers a template for undergraduate thesis in Peking University.
+]
+
+
+// 目录
+#TableOfContent
+
+
+// DOCUMENT START: 更改状态，标记了文档的开始
+#doc_start()
+
 
 = 基本功能 <intro>
 
@@ -465,7 +520,7 @@ $ lim_x =
 
 在 @theory1 中，我们回顾了 @intro 中的公式。下面，我们来推导一些新的公式：
 
-#lorem(1000)
+#lorem(500)
 
 = 展望
 
@@ -473,7 +528,9 @@ $ lim_x =
 
 - 参考文献格式，特别是中文参考文献的格式不完全符合学校有关规定。#link("https://discord.com/channels/1054443721975922748/1094796790559162408/1094928907880386662", "Discord 上的这个对话")显示，Typst 有关功能还在开发中。待有关接口对外开放后，本模板将会进行相应的适配。
 
-#appendix()
+
+// 这之后的章节都是附录，如无附录可以删掉
+#change_appendix()
 
 = 关于 Typst <about>
 
@@ -566,17 +623,36 @@ $ vec(overline(underbracket(underline(1 + 2) + overbrace(3 + dots.c + 10, "large
 
 == Typst 的开发者 <developers>
 
-#lorem(1000)
+#lorem(500)
 
 = 关于 PKUTHSS <pkuthss>
 
-#lorem(1000)
+#lorem(500)
 
 = 更新日志 <changelog>
 
 #include "changelog.typ"
 
-#pagebreak()
-#bibliography("ref.bib",
-  style: "ieee"
-)
+
+= 参考文献 <reference>
+
+// 参考文献之前需要更改一下语言，因为文章中图表格的中文名称是设置typst为中文得到的
+// 如果就是需要中文参考文献格式可以不更改
+#set text(lang: "en")
+#bibliography(title:none, "ref.bib")
+
+
+= 致谢 <thanks>
+
+感谢Typst开发者和原PhD论文模板开发者
+
+// DOCUMENT END:标记文章结束，页面计数停止
+#doc_end()
+
+
+// 原创性与版权声明
+
+// there may be a bug, I can not include it with a page (with pagebreak in the doc_end)
+
+#page(numbering: none, header: none, footer: none)[]
+#Statement(2024, 5, 15, teacher_sign : image("./images/老师签名.png"), my_sign: image("./images/本人签名.png"))
