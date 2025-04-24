@@ -55,14 +55,10 @@
   pagebreak(weak: true)
   page_start.update(false)
 }
-#let chinesenumbering(..nums, location: none, brackets: false) = locate(loc => {
-  let actual_loc = if location == none { loc } else { location }
+#let chinesenumbering(..nums, location: none, brackets: false) = context {
+  let actual_loc = if location == none { here() } else { location }
   if not appendix_mode.at(actual_loc) {
-    if nums.pos().len() == 1 {
-      text()[第#chinesenumber(nums.pos().first(), standalone: true)章]
-    } else {
-      numbering(if brackets { "(1.1)" } else { "1.1" }, ..nums)
-    }
+    numbering(if brackets { "(1.1)" } else { "1.1" }, ..nums)
   } else {
     if nums.pos().len() == 1 {
       "附录 " + numbering("A.1", ..nums)
@@ -71,20 +67,19 @@
     }
   }
   h(0.5em)
-})
+}
 
 #let foot_numbering() = {
-locate(loc => {
+  context {
     [
-    #if not page_start.at(loc)  {
+    #if not page_start.at(here())  {
     } else {
     
       set text(size: 字号.五号, font : 字体.黑体, weight: "regular")
       set align(center)
-      text[第 #counter(page).at(loc).first() 页] 
+      text[第 #counter(page).at(here()).first() 页] 
     }
     #label("__footer__")
     ] 
-  })
+  }
 }
-

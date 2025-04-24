@@ -5,13 +5,14 @@
   align(top + center)[
     #set text(font : 字体.黑体, size : 字号.小二)
     #strong[目#h(1em)录]
-    #v(1em)
   ]  
 
   set text(font: 字体.黑体, size : 字号.小四)
   set align(top)
-  locate(it => {
-    let elements = query(heading.where(outlined: true).after(it, inclusive : true))
+  context {
+    let it = here()
+    let elements = query(heading.where(outlined: true).after(it))
+
     set par(leading: 1em, first-line-indent: 0em)
     for el in elements {
 
@@ -23,12 +24,15 @@
         }
       }
       let line = {
+        // Indentation
         if indent {
           h(1em * (el.level - 1 ))
         }
+
+        // Number
         if maybe_number != none {
-          style(styles => {
-            let width = measure(maybe_number, styles).width
+          context {
+            let width = measure(maybe_number).width
             box(
               width: lengthceil(width),
               link(el.location(), if el.level == 1 {
@@ -37,9 +41,10 @@
                 maybe_number
               })
             )
-          })
+          }
         }
 
+        // Title
         link(el.location(), if el.level == 1 {
           strong(el.body)
         } else {
@@ -51,7 +56,7 @@
         box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
 
         // Page number
-        let footer = query(selector(<__footer__>).after(el.location(), inclusive: true))
+        let footer = query(selector(<__footer__>).after(el.location()))
         let page_number = if footer == () {
           0
         } else {
@@ -69,7 +74,14 @@
 
       line
     }
-  })
+
+    // 北京大学学位论文原创性声明和使用授权说明
+    link(<claim>, strong("北京大学学位论文原创性声明和使用授权说明"))
+    box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
+    link(<claim>, strong(str(
+      counter(page).at(<claim>).first()
+    )))
+  }
 }
 
 #let TableOfContent = [

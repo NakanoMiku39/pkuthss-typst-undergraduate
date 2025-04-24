@@ -17,7 +17,7 @@
   department : "信息科学与技术学院",
   major : "信息与计算科学",
   supervisor_name : "斯公子",
-  year_and_month : "二零二四年六月"
+  year_and_month : "二〇二五年五月"
 ) <title-page>
 
 
@@ -651,8 +651,4 @@ $ vec(overline(underbracket(underline(1 + 2) + overbrace(3 + dots.c + 10, "large
 
 
 // 原创性与版权声明
-
-// there may be a bug, I can not include it with a page (with pagebreak in the doc_end)
-
-#page(numbering: none, header: none, footer: none)[]
-#Statement(2024, 5, 15, teacher_sign : image("./images/老师签名.png"), my_sign: image("./images/本人签名.png"))
+#Statement(2024, 5, 15, teacher_sign : image("./images/老师签名.png"), my_sign: image("./images/本人签名.png")) <claim>
