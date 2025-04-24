@@ -10,8 +10,10 @@
 
   set text(font: 字体.黑体, size : 字号.小四)
   set align(top)
-  locate(it => {
-    let elements = query(heading.where(outlined: true).after(it, inclusive : true))
+  context {
+    let it = here()
+    let elements = query(heading.where(outlined: true).after(it))
+
     set par(leading: 1em, first-line-indent: 0em)
     for el in elements {
 
@@ -27,8 +29,8 @@
           h(1em * (el.level - 1 ))
         }
         if maybe_number != none {
-          style(styles => {
-            let width = measure(maybe_number, styles).width
+          context {
+            let width = measure(maybe_number).width
             box(
               width: lengthceil(width),
               link(el.location(), if el.level == 1 {
@@ -37,7 +39,7 @@
                 maybe_number
               })
             )
-          })
+          }
         }
 
         link(el.location(), if el.level == 1 {
@@ -51,7 +53,7 @@
         box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
 
         // Page number
-        let footer = query(selector(<__footer__>).after(el.location(), inclusive: true))
+        let footer = query(selector(<__footer__>).after(el.location()))
         let page_number = if footer == () {
           0
         } else {
@@ -69,7 +71,7 @@
 
       line
     }
-  })
+  }
 }
 
 #let TableOfContent = [
