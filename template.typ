@@ -14,7 +14,7 @@
 #import "template/abstract.typ": *
 
 // content.typ: 目录
-#import "template/content.typ" : *
+#import "template/outline.typ" : *
 
 // numbering.typ: 计数部分
 #import "template/numbering.typ" : *
@@ -78,88 +78,6 @@
     }
 
     ret.join()
-  }
-}
-
-// TODO Is this redundant?
-#let chineseoutline(title: "目录", depth: none, indent: false) = {
-  heading(title, numbering: none, outlined: false)
-  context {
-    let it = here()
-    let elements = query(heading.where(outlined: true).after(it))
-
-    for el in elements {
-      // Skip list of images and list of tables
-      if partcounter.at(el.location()).first() < 20 and el.numbering == none { continue }
-
-      // Skip headings that are too deep
-      if depth != none and el.level > depth { continue }
-
-      let maybe_number = if el.numbering != none {
-        if el.numbering == chinesenumbering {
-          chinesenumbering(..counter(heading).at(el.location()), location: el.location())
-        } else {
-          numbering(el.numbering, ..counter(heading).at(el.location()))
-        }
-        h(0.5em)
-      }
-
-      let line = {
-        if indent {
-          h(1em * (el.level - 1 ))
-        }
-
-        if el.level == 1 {
-          v(0.5em, weak: true)
-        }
-
-        if maybe_number != none {
-          context {
-            let width = measure(maybe_number, styles).width
-            box(
-              width: lengthceil(width),
-              link(el.location(), if el.level == 1 {
-                strong(maybe_number)
-              } else {
-                maybe_number
-              })
-            )
-          }
-        }
-
-        link(el.location(), if el.level == 1 {
-          strong(el.body)
-        } else {
-          el.body
-        })
-
-        // Filler dots
-        if el.level == 1 {
-          box(width: 1fr, h(10pt) + box(width: 1fr) + h(10pt))
-        } else {
-          box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
-        }
-
-        // Page number
-        let footer = query(selector(<__footer__>).after(el.location()))
-        let page_number = if footer == () {
-          0
-        } else {
-          counter(page).at(footer.first().location()).first()
-        }
-        
-        link(el.location(), if el.level == 1 {
-          strong(str(page_number))
-        } else {
-          str(page_number)
-        })
-
-        linebreak()
-        v(-0.2em)
-      }
-
-      line
-    }
   }
 }
 
@@ -317,11 +235,10 @@
         return
       }
       set align(center)
-      set text(font: 字体.宋体, size: 字号.小四, weight: "regular")
+      set text(font: 字体.宋体, size: 字号.小五, weight: "regular")
       ctitle
-      v(-1em)
+      v(-0.5em)
       line(length: 100%)
-
      },
     footer: foot_numbering(),
   )
@@ -330,7 +247,7 @@
   show <thanks> : set heading(numbering: none)
   show strong: it => text(font: 字体.黑体, weight: "semibold", it.body)
   show emph: it => text(font: 字体.楷体, style: "italic", it.body)
-  show par: set block(spacing: linespacing)
+  set par(spacing: linespacing)
   show raw: set text(font: 字体.代码)
 
   show figure: it => [
@@ -385,36 +302,17 @@
       #it.body
       #v(0.4em)
     ]
-    set align(top)
+    set align(left)
+    set text(weight: "regular")
     if it.level == 1 {
-      
-      pagebreak(weak:true)
-
-
-      if it.numbering != none {
-        chaptercounter.step()
-      }
-      footnotecounter.update(())
-      imagecounter.update(())
-      tablecounter.update(())
-      rawcounter.update(())
-      equationcounter.update(())
-
-      set align(center)
-      set strong()
       sizedheading(it, 字号.三号)
+    } else if it.level == 2 {
+      sizedheading(it, 字号.小三)
+    } else if it.level == 3 {
+      sizedheading(it, 字号.四号)
     } else {
-      set align(left)
-      set text(weight: "regular")
-      if it.level == 2 {
-        sizedheading(it, 字号.四号)
-      } else if it.level == 3 {
-        sizedheading(it, 字号.中四)
-      } else {
-        sizedheading(it, 字号.小四)
-      }
+      sizedheading(it, 字号.小四)
     }
-    
   }
 
   show ref: it => {
@@ -470,21 +368,17 @@
 
 
   set par(first-line-indent: 2em, leading: 1em)
-  /*
-  show par : it => locate(
-    loc => {
-      if doc_mode.at(loc) {
-        v(0.1em)
-        it
-      } else {
-        it
-      }
+  show par : it => context {
+    if doc_mode.at(here()) {
+      v(0.1em)
+      it
+    } else {
+      it
     }
-  )
-  */
-  // TODO Enable this
+  }
   
   set align(start)
+
   // 正文显示部分
   doc
 }

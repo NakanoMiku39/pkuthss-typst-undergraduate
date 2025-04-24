@@ -58,11 +58,7 @@
 #let chinesenumbering(..nums, location: none, brackets: false) = context {
   let actual_loc = if location == none { here() } else { location }
   if not appendix_mode.at(actual_loc) {
-    if nums.pos().len() == 1 {
-      text()[第#chinesenumber(nums.pos().first(), standalone: true)章]
-    } else {
-      numbering(if brackets { "(1.1)" } else { "1.1" }, ..nums)
-    }
+    numbering(if brackets { "(1.1)" } else { "1.1" }, ..nums)
   } else {
     if nums.pos().len() == 1 {
       "附录 " + numbering("A.1", ..nums)

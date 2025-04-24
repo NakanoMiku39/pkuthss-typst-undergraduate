@@ -5,7 +5,6 @@
   align(top + center)[
     #set text(font : 字体.黑体, size : 字号.小二)
     #strong[目#h(1em)录]
-    #v(1em)
   ]  
 
   set text(font: 字体.黑体, size : 字号.小四)
@@ -25,9 +24,12 @@
         }
       }
       let line = {
+        // Indentation
         if indent {
           h(1em * (el.level - 1 ))
         }
+
+        // Number
         if maybe_number != none {
           context {
             let width = measure(maybe_number).width
@@ -42,6 +44,7 @@
           }
         }
 
+        // Title
         link(el.location(), if el.level == 1 {
           strong(el.body)
         } else {

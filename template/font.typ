@@ -23,7 +23,7 @@
   仿宋: ("Times New Roman", "FangSong"),
   宋体: ("Times New Roman", "SimSun"),
   黑体: ("Times New Roman", "SimHei"),
-  楷体: ("Times New Roman", "KaiTi"),
+  楷体: ("Times New Roman", "KaiTi_GB2312"),
   代码: ("Consolas"),
 )
 

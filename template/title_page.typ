@@ -15,61 +15,72 @@
     #strong(name)
   ]
 
-  let fieldvalue(style : 字体.黑体, size : 字号.三号, value) = [
+  let fieldvalue(style : 字体.黑体, size : 字号.三号, row_gutter : 0.7em, value) = [
     #set align(center + horizon)
     #set text(font: style, size:size)
     #grid(
       rows: (auto, auto),
-      row-gutter: 0.3em,
+      row-gutter: row_gutter,
       [#value],
       line(length: 100%)
     )
   ]
   page(numbering: none, header: none, footer: none)[
     #set align(center)
-    #box(
-      grid(
-        columns: (auto, auto),
-        gutter: 0.4em,
-        image("../asset/pkulogo.svg", height: 65pt, fit: "contain"),
-        image("../asset/pkuword.svg", height: 60pt, fit: "contain")
-      )
-    )
 
-    #text(
-      font: 字体.黑体,
-      size: 字号.小初,
-      [本科生毕业论文]
-    )
+    #v(0.5em)
+    #pad(left: 1em)[
+      #grid(
+        columns: (auto, auto),
+        column-gutter: 1.05em,
+        image("../asset/pkulogo.svg", height: 68pt, fit: "contain"),
+        align(horizon, 
+          image("../asset/pkuword.svg", height: 47pt, fit: "contain")
+        )
+      )
+      #v(0.1em)
+      #block(
+        text(
+          font: 字体.黑体,
+          size: 字号.小初,
+          [本科生毕业论文]
+        )
+      )
+    ]
+
+    #v(2.5em)
     
-    #let title = fieldvalue.with(style : 字体.黑体, size : 字号.一号) 
-    #pad(x:7%)[#grid(
+    #let title = fieldvalue.with(style : 字体.黑体, size : 字号.一号, row_gutter : 0.5em) 
+    #pad(left: 11.5%, right: 14%)[#grid(
       columns: 2,
       rows: 2,
-      column-gutter: 1em,
-      row-gutter: 1em,
-      [#text(font: 字体.宋体, size : 字号.二号)[题目]], [#title(chinese_title)],
-      [],[#title(english_title)]
+      column-gutter: 1.5em,
+      row-gutter: 1.4em,
+      [#align(horizon, text(font: 字体.宋体, size : 字号.二号)[题目：])], [#strong(title(chinese_title))],
+      [],[#strong(title(english_title))]
     )]
-    #v(10%)
-    #let term = fieldvalue.with(style : 字体.仿宋, size : 字号.小三) 
-    #pad(x: 15%,grid(
+    #v(9.5em)
+    #let term = fieldvalue.with(style : 字体.仿宋, size : 字号.小三, row_gutter : 0.7em) 
+    #pad(left: 15.5%, right: 19%, grid(
       columns: 2,
-      row-gutter: 1em,
+      row-gutter: 0.95em,
       column-gutter: 1em,
-      fieldname([姓#h(2em)名]), term(name),
-      fieldname([学#h(2em)号]), term(studentid),
-      fieldname([院#h(2em)系]),term(department),
-      fieldname([专#h(2em)业]),term(major),
-      fieldname([导师姓名]), term(supervisor_name)
+      fieldname([姓#h(2em)名：]), term(name),
+      fieldname([学#h(2em)号：]), term(studentid),
+      fieldname([院#h(2em)系：]), term(department),
+      fieldname([专#h(2em)业：]), term(major),
+      fieldname([导师姓名：]), term(supervisor_name)
     ))
 
-    #align(bottom)[
-      #text(
-        font: 字体.黑体,
-        size: 字号.三号,
-        year_and_month
-      )
+    #v(2.1em)
+    #align(horizon)[
+      #pad(left: 1.05em)[
+        #text(
+          font: 字体.黑体,
+          size: 字号.三号,
+          year_and_month
+        )
+      ]
     ]
   ]
 }

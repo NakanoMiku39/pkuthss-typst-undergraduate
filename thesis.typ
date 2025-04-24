@@ -17,7 +17,7 @@
   department : "信息科学与技术学院",
   major : "信息与计算科学",
   supervisor_name : "斯公子",
-  year_and_month : "二零二四年六月"
+  year_and_month : "二〇二五年五月"
 ) <title-page>
 
 
