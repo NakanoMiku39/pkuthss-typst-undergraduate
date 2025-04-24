@@ -655,4 +655,4 @@ $ vec(overline(underbracket(underline(1 + 2) + overbrace(3 + dots.c + 10, "large
 // there may be a bug, I can not include it with a page (with pagebreak in the doc_end)
 
 #page(numbering: none, header: none, footer: none)[]
-#Statement(2024, 5, 15, teacher_sign : image("./images/老师签名.png"), my_sign: image("./images/本人签名.png"))
+#Statement(2024, 5, 15, teacher_sign : image("./images/老师签名.png"), my_sign: image("./images/本人签名.png")) <claim>

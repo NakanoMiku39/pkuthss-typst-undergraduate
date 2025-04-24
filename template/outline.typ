@@ -74,6 +74,13 @@
 
       line
     }
+
+    // 北京大学学位论文原创性声明和使用授权说明
+    link(<claim>, strong("北京大学学位论文原创性声明和使用授权说明"))
+    box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
+    link(<claim>, strong(str(
+      counter(page).at(<claim>).first()
+    )))
   }
 }
 
