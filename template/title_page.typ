@@ -38,7 +38,7 @@
           image("../asset/pkuword.svg", height: 47pt, fit: "contain")
         )
       )
-      #v(0.1em)
+      #v(0.4em)
       #block(
         text(
           font: 字体.黑体,
