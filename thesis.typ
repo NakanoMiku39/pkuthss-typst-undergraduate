@@ -14,7 +14,7 @@
   english_title: [Typst: State-of-art \ Formatting System],
   name : "十一",
   studentid : "20000xxxxx",
-  department : "信息科学与技术学院",
+  department : "信息科学技术学院",
   major : "信息与计算科学",
   supervisor_name : "斯公子",
   year_and_month : "二〇二五年五月"
@@ -26,7 +26,7 @@
 #CheckSheet(
   name : "十一",
   studentid : "20000xxxxx",
-  school : "信息科学与技术学院",
+  school : "信息科学技术学院",
   major : "信息与计算科学",
   supervisor : "斯公子",
   department : "计算机学院",
