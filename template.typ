@@ -367,7 +367,7 @@
   }
 
 
-  set par(first-line-indent: 2em, leading: 1em)
+  set par(first-line-indent: (amount: 2em, all: true), leading: 1em)  // https://github.com/typst/typst/pull/5768
   show par : it => context {
     if doc_mode.at(here()) {
       v(0.1em)
