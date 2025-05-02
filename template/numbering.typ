@@ -50,8 +50,6 @@
 }
 
 #let stop_page_counting() = {
-  
-  
   pagebreak(weak: true)
   page_start.update(false)
 }
@@ -66,7 +64,6 @@
       numbering(if brackets { "(A.1)" } else { "A.1" }, ..nums)
     }
   }
-  h(0.5em)
 }
 
 #let foot_numbering() = {
