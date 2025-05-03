@@ -32,7 +32,7 @@
         // Number
         if maybe_number != none {
           context {
-            let width = measure(maybe_number).width
+            let width = measure(maybe_number).width + (0.5em).to-absolute()
             box(
               width: lengthceil(width),
               link(el.location(), if el.level == 1 {
