@@ -137,7 +137,6 @@
 #let booktab(columns: (), aligns: (), width: auto, caption: none, ..cells) = {
   let headers = cells.pos().slice(0, columns.len())
   let contents = cells.pos().slice(columns.len(), cells.pos().len())
-  set align(center)
 
   if aligns == () {
     for i in range(0, columns.len()) {
@@ -150,10 +149,11 @@
     content_aligns.push(aligns.at(calc.rem(i, aligns.len())))
   }
 
-  figure(
+  return figure(
     block(
       width: width,
       grid(
+        align: center,
         columns: (auto),
         row-gutter: 1em,
         line(length: 100%),
@@ -190,7 +190,7 @@
     ),
     caption: caption,
     kind: table
-  )
+  );
 }
 
 // 标记文档开始的时候的一些状态设置
