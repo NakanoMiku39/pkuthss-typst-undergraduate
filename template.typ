@@ -310,6 +310,11 @@
     }
   }
 
+  show heading.where(depth: 1): body => {    
+    pagebreak(weak: true)
+    body
+  }
+
   show ref: it => {
     if it.element == none {
       // Keep citations as is
