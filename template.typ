@@ -381,6 +381,7 @@
     }
   }
   
+  set footnote(numbering: (..nums) => text(size: 10pt, numbering("①", ..nums)))
   set align(start)
 
   // 正文显示部分
