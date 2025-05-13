@@ -2,6 +2,7 @@
 #import "numbering.typ" : *
 #let lengthceil(len, unit: 字号.小四) = calc.ceil(len / unit) * unit
 #let chineseoutline(depth: none, indent: true) = {
+  pagebreak(to: "odd")
   align(top + center)[
     #set text(font : 字体.黑体, size : 字号.小二)
     #strong[目#h(1em)录]
