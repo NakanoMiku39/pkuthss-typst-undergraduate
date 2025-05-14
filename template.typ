@@ -301,6 +301,10 @@
     set text(weight: "regular")
     if it.level == 1 {
       sizedheading(it, 字号.三号)
+      rawcounter.update(())
+      imagecounter.update(())
+      tablecounter.update(())
+      equationcounter.update(())
     } else if it.level == 2 {
       sizedheading(it, 字号.小三)
     } else if it.level == 3 {
