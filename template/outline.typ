@@ -2,6 +2,7 @@
 #import "numbering.typ" : *
 #let lengthceil(len, unit: 字号.小四) = calc.ceil(len / unit) * unit
 #let chineseoutline(depth: none, indent: true) = {
+  pagebreak(to: "odd")
   align(top + center)[
     #set text(font : 字体.黑体, size : 字号.小二)
     #strong[目#h(1em)录]
@@ -32,7 +33,7 @@
         // Number
         if maybe_number != none {
           context {
-            let width = measure(maybe_number).width
+            let width = measure(maybe_number).width + (0.5em).to-absolute()
             box(
               width: lengthceil(width),
               link(el.location(), if el.level == 1 {
