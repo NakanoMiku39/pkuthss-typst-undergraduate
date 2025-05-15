@@ -314,7 +314,7 @@
     }
   }
 
-  show heading.where(depth: 1): body => {    
+  show heading.where(level: 1): body => {    
     pagebreak(weak: true)
     body
   }

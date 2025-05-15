@@ -478,7 +478,6 @@ $ lim_x =
 
 Typst 支持 BibLaTeX 格式的 `.bib` 文件，同时也新定义了一种基于 YAML 的文献引用格式。要想在文档中引用参考文献，需要在文档中通过调用 `bibliography` 函数来引用参考文献文件。下面是一个示例：
 
-#pagebreak()
 
 #table(
   columns: (1fr, 1fr),
